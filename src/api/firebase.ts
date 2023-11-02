@@ -1,13 +1,12 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_API_ID,
+  apiKey: 'AIzaSyChtFwJgp9QAw9qKZtJnILF4WeGRutqq8Q',
+  authDomain: 'clubnet-app.firebaseapp.com',
+  projectId: 'clubnet-app',
+  storageBucket: 'clubnet-app.appspot.com',
+  messagingSenderId: '629194976654',
+  appId: '1:629194976654:web:190090bfe4e9db911988df',
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
