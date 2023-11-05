@@ -1,0 +1,12 @@
+{
+    "common": {
+        "hello": "Hello",
+        "language" : "Choose your language"
+    },
+    "validation": {
+
+    },
+    "glossary": {
+
+    }
+}
