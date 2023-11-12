@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next';
-import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
+import { AppRouter } from 'app/providers/router';
 
 function App() {
-  const { t } = useTranslation();
   return (
     <div className="app">
-      <LangSwitcher />
-      <p>{t('common.hello')}</p>
+      <AppRouter />
     </div>
   );
 }

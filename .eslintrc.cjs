@@ -36,6 +36,14 @@ module.exports = {
     'import/no-absolute-path': 0,
     'import/extensions': 0,
     'import/no-extraneous-dependencies': 0,
+    'react/jsx-props-no-spreading': 0,
     'import/prefer-default-export': 0,
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+      },
+    ],
   },
 };
