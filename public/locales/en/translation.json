@@ -3,6 +3,9 @@
         "hello": "Hello",
         "language" : "Choose your language"
     },
+    "auth": {
+        "auth-error": "Error during authorization"
+    },
     "validation": {
 
     },

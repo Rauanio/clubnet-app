@@ -38,6 +38,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'react/jsx-props-no-spreading': 0,
     'import/prefer-default-export': 0,
+    'consistent-return': 0,
     'no-param-reassign': [
       'error',
       {

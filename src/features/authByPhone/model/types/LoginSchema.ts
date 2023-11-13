@@ -1,5 +1,7 @@
 export interface LoginSchema {
-  phone: number;
-  token: string;
-  id: string;
+  phone: string;
+  otp: string;
+  user?: null;
+  isLoading?: boolean;
+  error?: string;
 }

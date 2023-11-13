@@ -1,68 +1,45 @@
-import {
-  ConfirmationResult,
-  RecaptchaVerifier,
-  getAuth,
-  signInWithPhoneNumber,
-} from 'firebase/auth';
 import { Button, TextInput } from '@mantine/core';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { useState } from 'react';
-import { extendedWindow } from 'shared/types/extendedWindow';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { sendOtp, verifyOtp } from '../model/services/loginAsync';
+import { selectAuth } from '../model/selectors/selectAuth';
+import { loginActions } from '../model/slice/loginSlice';
 
 export function LoginForm() {
-  const auth = getAuth();
-  const [phone, setPhone] = useState('');
-  // const [user, setUser] = useState('');
-  const [otp, setOtp] = useState('');
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+  const { otp, phone, error } = useSelector(selectAuth);
 
-  const setupRecaptcha = () => {
-    const recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      'recaptcha-container',
-      {}
-    );
-    return signInWithPhoneNumber(auth, phone, recaptchaVerifier);
+  const onSendOtp = () => {
+    dispatch(sendOtp(phone));
   };
 
-  let confirmObj: ConfirmationResult;
-
-  const sendOtp = async () => {
-    try {
-      confirmObj = await setupRecaptcha();
-      console.log(confirmObj);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const onSubmit = () => {
-    try {
-      const res = extendedWindow.confirmationResult.confirm(otp);
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+  const onVerifyOtp = () => {
+    dispatch(verifyOtp(otp));
   };
 
   return (
     <div>
       <h1>Login Form</h1>
+      {error && <p>{t('auth.auth-error')}</p>}
       <PhoneInput
         value={phone}
-        onChange={(ph) => setPhone(`+${ph}`)}
+        onChange={(ph) => dispatch(loginActions.setPhone(`+${ph}`))}
         country="kz"
       />
-      <Button onClick={sendOtp} type="submit">
+      <Button onClick={onSendOtp} type="submit">
         Send OTP
       </Button>
       <div id="recaptcha-container" />
       <TextInput
-        onChange={(e) => setOtp(e.target.value)}
+        onChange={(e) => dispatch(loginActions.setOtp(e.target.value))}
         placeholder="Enter OTP"
         w={250}
       />
-      <Button onClick={onSubmit}>Verify</Button>
+      <Button onClick={onVerifyOtp}>Verify</Button>
     </div>
   );
 }
