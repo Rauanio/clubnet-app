@@ -1,0 +1,19 @@
+{
+    "common": {
+        "hello": "Hello",
+        "language" : "Choose your language"
+    },
+    "auth": {
+        "authError": "Error during authorization",
+        "serverEror": "Server error during authorization",
+        "loggedIn": "User succesfully Logged In",
+        "verify": "Verify",
+        "send": "Send OTP"
+    },
+    "validation": {
+
+    },
+    "glossary": {
+
+    }
+}
