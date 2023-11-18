@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { sendOtp, verifyOtp } from '../services/loginAsync';
 import { LoginSchema } from '../types/LoginSchema';
 
 const initialState: LoginSchema = {
   phone: '',
   otp: '',
+  error: '',
   user: null,
   isLoading: false,
-  error: '',
+  isLoggedIn: false,
 };
 
 export const loginSlice = createSlice({
@@ -39,6 +41,7 @@ export const loginSlice = createSlice({
     });
     builder.addCase(verifyOtp.fulfilled, (state) => {
       state.isLoading = false;
+      state.isLoggedIn = true;
     });
     builder.addCase(verifyOtp.rejected, (state, action) => {
       state.isLoading = false;

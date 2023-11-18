@@ -4,6 +4,7 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from 'firebase/auth';
+import { ErrorHandler } from 'shared/helpers/ErrorHandler';
 import { auth } from 'shared/api/firebase';
 
 export const setupRecaptcha = (phone: string) => {
@@ -14,6 +15,7 @@ export const setupRecaptcha = (phone: string) => {
   );
   return signInWithPhoneNumber(auth, phone, recaptchaVerifier);
 };
+
 let confirmObj: ConfirmationResult;
 
 export const sendOtp = createAsyncThunk(
@@ -23,7 +25,7 @@ export const sendOtp = createAsyncThunk(
       confirmObj = await setupRecaptcha(phone);
       return confirmObj;
     } catch (error) {
-      return rejectWithValue('error');
+      return rejectWithValue(ErrorHandler(error));
     }
   }
 );
@@ -35,7 +37,7 @@ export const verifyOtp = createAsyncThunk(
       const res = confirmObj.confirm(otp);
       return res;
     } catch (error) {
-      return rejectWithValue('error');
+      return rejectWithValue(ErrorHandler(error));
     }
   }
 );

@@ -4,7 +4,11 @@
         "language" : "Choose your language"
     },
     "auth": {
-        "auth-error": "Error during authorization"
+        "authError": "Error during authorization",
+        "serverEror": "Server error during authorization",
+        "loggedIn": "User succesfully Logged In",
+        "verify": "Verify",
+        "send": "Send OTP"
     },
     "validation": {
 
